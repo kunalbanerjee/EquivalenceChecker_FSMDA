@@ -1,0 +1,39 @@
+"solvlu.org"
+q00 1 - | i = 0 q01 ;
+q01 2 i<n | - q02 
+      !(i<n) | - q05 ;
+q02 1 - | j = order[i] q03 ;
+q03 1 - | x[i] = b[j] q04 ;
+q04 1 - | i = i+1 q01 ;
+
+q05 1 - | x[0] = x[0]/a[0][0] q06 ;
+q06 1 - | i = 1 q07 ;
+q07 2 i<n | - q08
+      !(i<n) | - q15 ;
+q08 1 - | sum = 0 q09 ;
+q09 1 - | j = 0 q10;
+q10 2 j<i | - q11
+      !(j<i) | - q13 ;
+q11 1 - | temp1 = a[i][j]*x[j] q41 ;
+q41 1 - | sum = sum + temp1    q12 ;
+q12 1 - | j = j+1 q10 ;
+
+q13 1 - | temp2 = (x[i]-sum)   q42 ;
+q42 1 - | x[i] = temp2/a[i][i] q14 ;
+q14 1 - | i = i+1 q07 ;
+
+q15 1 - | i = n-2 q16 ;
+q16 2 i>=0 | - q17
+      !(i>=0) | - q0e ;
+q17 1 - | sum = 0 q18 ;
+q18 1 - | j = i+1 q19 ;
+q19 2 j<n | - q20
+      !(j<n) | - q22 ;
+q20 1 - | temp3 = a[i][j]*x[j] q43 ;
+q43 1 - | sum = sum + temp3    q21 ;
+q21 1 - | j = j+1 q19 ;
+
+q22 1 - | x[i] = x[i]-sum q23 ;
+q23 1 - | i = i-1 q16 ;     
+
+q0e 0 ; 

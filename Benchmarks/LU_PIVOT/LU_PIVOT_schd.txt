@@ -1,0 +1,20 @@
+"lu_pivot_sparkout1.org"
+r1000 1 - | ipvt=jcol, big=fabs(a[jcol][jcol]), i=jcol+1 r1298 ; 
+r1298 2 i<n    | - r1003
+        !(i<n) | - r1296 ; 
+ 	
+r1003 1 - | anext=fabs(a[i][jcol]) r1299 ; 
+r1299 2 anext>big    | - r1004
+        !(anext>big) | - r1006 ; 	
+
+r1004 1 - | big=anext, ipvt=i r1006 ; 	
+r1006 1 - | i=i+1	r1298	;
+
+r1296 2 ipvt==jcol    | returnVar_pivot=0 r1012
+        !(ipvt==jcol) | -                 r1008 ;
+
+r1008 1 - | i=order[jcol]                    r1009 ; 	
+r1009 1 - | order[jcol]=order[ipvt]          r1010 ; 	
+r1010 1 - | order[ipvt]=i, returnVar_pivot=1 r1012 ; 	
+
+r1012 0 ;

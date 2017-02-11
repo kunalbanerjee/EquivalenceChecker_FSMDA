@@ -1,0 +1,25 @@
+"NotEquivalent.schd"
+
+b0 1 - |  i = 0 b1 ;
+b1 1 - | sT6_12 = i+1, sT7_11 = a[i] b2 ;
+b2 2 i <= n-2 | - b3
+     !(i <= n-2) | - b13 ;
+
+b3 1 - | min = sT7_11, j_star = i, j = sT6_12 b4 ;
+b4 1 - | sT8_12 = j+1, sT9_13 = a[j] b5 ;
+b5 2 j <= n-1 | - b6
+     !(j <= n-1) | - b10 ;
+     
+b6 2 sT9_13 < min | - b7
+     !(sT9_13 < min) | - b9 ;
+     
+b7 1 - | min = sT9_13, j_star = j, j = sT8_12 b8 ;
+b9 1 - | j = sT8_12 b8 ;
+b8 1 - | sT8_12 = j+1, sT9_13 = a[j] b5 ;
+
+b10 1 - | a[i] = sT7_11 b11 ;
+b11 1 - | a[j_star] = sT7_11, i = sT6_12 b12 ;
+b12 1 - | sT6_12 = i+1, sT7_11 = a[i] b2 ;
+
+b13 1 - | - b14 ;
+b14 0 ;

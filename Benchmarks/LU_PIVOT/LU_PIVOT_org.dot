@@ -1,0 +1,53 @@
+digraph fsmdIndot {
+
+"lu_pivot1.org" [shape=note];
+q1000 [shape=circle];
+q1001 [shape=circle];
+q1000 -> q1001 [label="- | ipvt=jcol"];
+q1001 [shape=circle];
+q1297LB [shape=circle];
+q1001 -> q1297LB [label="- | big=fabs(a[ipvt][ipvt])"];
+q1002 [shape=circle];
+q1299 [shape=circle];
+q1002 -> q1299 [label="- | anext=fabs(a[i][jcol])"];
+q1003 [shape=circle];
+q1004 [shape=circle];
+q1003 -> q1004 [label="- | big=anext"];
+q1004 [shape=circle];
+q1296 [shape=circle];
+q1004 -> q1296 [label="- | ipvt=i"];
+q1005LE [shape=circle];
+q1006 [shape=circle];
+q1005LE -> q1006 [label="- | -"];
+q1006 [shape=circle];
+q1007 [shape=circle];
+q1006 -> q1007 [label="- | i=order[jcol]"];
+q1007 [shape=circle];
+q1008 [shape=circle];
+q1007 -> q1008 [label="- | order[jcol]=order[ipvt]"];
+q1008 [shape=circle];
+q1009 [shape=circle];
+q1008 -> q1009 [label="- | order[ipvt]=i"];
+q1296 [shape=circle];
+q1298 [shape=circle];
+q1296 -> q1298 [label="- | i=i+1"];
+q1297LB [shape=circle];
+q1298 [shape=circle];
+q1297LB -> q1298 [label="- | i=ipvt+1"];
+q1295 [shape=circle];
+q1009 [shape=circle];
+q1295 -> q1009 [label="ipvt==jcol | -"];
+q1005LE [shape=circle];
+q1295 -> q1005LE [label="!(ipvt==jcol) | -"];
+q1298 [shape=circle];
+q1002 [shape=circle];
+q1298 -> q1002 [label="i<n | -"];
+q1295 [shape=circle];
+q1298 -> q1295 [label="!(i<n) | -"];
+q1299 [shape=circle];
+q1003 [shape=circle];
+q1299 -> q1003 [label="anext>big | -"];
+q1296 [shape=circle];
+q1299 -> q1296 [label="!(anext>big) | -"];
+
+}

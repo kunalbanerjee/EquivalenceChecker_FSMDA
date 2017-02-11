@@ -1,0 +1,47 @@
+digraph fsmdIndot {
+
+"Wavelet.org" [shape=note];
+qq1000 [shape=circle];
+qq1999 [shape=circle];
+qq1000 -> qq1999 [label="- | i=0,\nj=0"];
+qq1001 [shape=circle];
+qq1002 [shape=circle];
+qq1001 -> qq1002 [label="- | wksp[i]=(C0)*(a[j])+(C1)*(a[j+1])+(C2)*(a[j+2])+(C3)*(a[j+3])"];
+qq1002 [shape=circle];
+qq1997 [shape=circle];
+qq1002 -> qq1997 [label="- | wksp[i+100]=(C3)*(a[j])-(C2)*(a[j+1])+(C1)*(a[j+2])-(C0)*(a[j+3])"];
+qq1003 [shape=circle];
+qq1004 [shape=circle];
+qq1003 -> qq1004 [label="- | wksp[i]=(C0)*(a[j+2])+(C1)*(a[j+3])+(C2)*(a[j+4])+(C3)*(a[j+5])"];
+qq1004 [shape=circle];
+qq1994 [shape=circle];
+qq1004 -> qq1994 [label="- | wksp[i+100]=(C3)*(a[j+2])-(C2)*(a[j+3])+(C1)*(a[j+4])-(C0)*(a[j+5])"];
+qq1993 [shape=circle];
+qq1998LB [shape=circle];
+qq1993 -> qq1998LB [label="filter==0 | -"];
+qq1995LB [shape=circle];
+qq1993 -> qq1995LB [label="!(filter==0) | -"];
+qq1994 [shape=circle];
+qq1996 [shape=circle];
+qq1994 -> qq1996 [label="- | j=j+2,\ni=i+1"];
+qq1995LB [shape=circle];
+qq1996 [shape=circle];
+qq1995LB -> qq1996 [label="- | i=0,\nj=0"];
+qq1996 [shape=circle];
+qq1003 [shape=circle];
+qq1996 -> qq1003 [label="j<(n-3)/2 | -"];
+qq1005LELE [shape=circle];
+qq1996 -> qq1005LELE [label="!(j<(n-3)/2) | -"];
+qq1997 [shape=circle];
+qq1999 [shape=circle];
+qq1997 -> qq1999 [label="- | j=j+2,\ni=i+1"];
+qq1998LB [shape=circle];
+qq1999 [shape=circle];
+qq1998LB -> qq1999 [label="- | i=0,\nj=0"];
+qq1999 [shape=circle];
+qq1001 [shape=circle];
+qq1999 -> qq1001 [label="j<(n-3)/2 | -"];
+qq1005LELE [shape=circle];
+qq1999 -> qq1005LELE [label="!(j<(n-3)/2) | -"];
+
+}

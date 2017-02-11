@@ -1,0 +1,17 @@
+"lu_pivot1.org"
+q1000 1 - | ipvt=jcol	q1001	; 
+q1001 1 - | big=fabs(a[ipvt][ipvt])	q1297LB	; 	
+q1002 1 - | anext=fabs(a[i][jcol])	q1299	; 	
+q1003 1 - | big=anext	q1004	; 	
+q1004 1 - | ipvt=i	q1296	; 	
+q1005LE 1 - | - 	q1006	;
+q1006 1 - | i=order[jcol]	q1007	; 	
+q1007 1 - | order[jcol]=order[ipvt]	q1008	; 	
+q1008 1 - | order[ipvt]=i	q1009	; 	
+q1296 1 - | i=i+1	q1298	; 	
+q1297LB 1 - | i=ipvt+1	q1298	;
+q1295 2 ipvt==jcol | - 	q1009	 !(ipvt==jcol) | - 	q1005LE	; 
+q1298 2 i<n | - 	q1002	 !(i<n) | - 	q1295	; 	
+q1299 2 anext>big | - 	q1003	 !(anext>big) | - 	q1296	; 	
+q1009 0 ;
+

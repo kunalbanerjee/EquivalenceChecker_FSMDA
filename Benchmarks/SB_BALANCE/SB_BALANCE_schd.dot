@@ -1,0 +1,53 @@
+digraph fsmdIndot {
+
+"balanced.schd" [shape=note];
+r1000 [shape=circle];
+r1298 [shape=circle];
+r1000 -> r1298 [label="- | i=0"];
+r1298 [shape=circle];
+r1003 [shape=circle];
+r1298 -> r1003 [label="i<8 | count_1s[i]=0,\ncount_0s[i]=0"];
+r1293 [shape=circle];
+r1298 -> r1293 [label="!(i<8) | i=0"];
+r1003 [shape=circle];
+r1298 [shape=circle];
+r1003 -> r1298 [label="- | i=i+1"];
+r1293 [shape=circle];
+r1296 [shape=circle];
+r1293 -> r1296 [label="i<f(1,8) | y=sbox[i],\nbit_index=0"];
+r1012 [shape=circle];
+r1293 -> r1012 [label="!(i<f(1,8)) | -"];
+r1296 [shape=circle];
+r1299 [shape=circle];
+r1296 -> r1299 [label="bit_index<8 | -"];
+r1011 [shape=circle];
+r1296 -> r1011 [label="!(bit_index<8) | -"];
+r1299 [shape=circle];
+r1010 [shape=circle];
+r1299 -> r1010 [label="f2(y,1,bit_index)!=0 | count_1s[bit_index]=count_1s[bit_index]+1"];
+r1010 [shape=circle];
+r1299 -> r1010 [label="f2(y,1,bit_index)==0 | count_0s[bit_index]=count_0s[bit_index]+1"];
+r1010 [shape=circle];
+r1296 [shape=circle];
+r1010 -> r1296 [label="- | bit_index=bit_index+1"];
+r1011 [shape=circle];
+r1293 [shape=circle];
+r1011 -> r1293 [label="- | i=i+1"];
+r1012 [shape=circle];
+r1291 [shape=circle];
+r1012 -> r1291 [label="- | i=0"];
+r1291 [shape=circle];
+r1292 [shape=circle];
+r1291 -> r1292 [label="i<8 | -"];
+r1018 [shape=circle];
+r1291 -> r1018 [label="!(i<8) | -"];
+r1292 [shape=circle];
+r1017 [shape=circle];
+r1292 -> r1017 [label="count_1s[i]!=count_0s[i] | balanced=0"];
+r1017 [shape=circle];
+r1292 -> r1017 [label="count_1s[i]==count_0s[i] | balanced=1"];
+r1017 [shape=circle];
+r1291 [shape=circle];
+r1017 -> r1291 [label="- | i=i+1"];
+
+}

@@ -1,0 +1,41 @@
+digraph fsmdIndot {
+
+"lu_pivot_sparkout1.org" [shape=note];
+r1000 [shape=circle];
+r1298 [shape=circle];
+r1000 -> r1298 [label="- | ipvt=jcol,\nbig=fabs(a[jcol][jcol]),\ni=jcol+1"];
+r1298 [shape=circle];
+r1003 [shape=circle];
+r1298 -> r1003 [label="i<n | -"];
+r1296 [shape=circle];
+r1298 -> r1296 [label="!(i<n) | -"];
+r1003 [shape=circle];
+r1299 [shape=circle];
+r1003 -> r1299 [label="- | anext=fabs(a[i][jcol])"];
+r1299 [shape=circle];
+r1004 [shape=circle];
+r1299 -> r1004 [label="anext>big | -"];
+r1006 [shape=circle];
+r1299 -> r1006 [label="!(anext>big) | -"];
+r1004 [shape=circle];
+r1006 [shape=circle];
+r1004 -> r1006 [label="- | big=anext,\nipvt=i"];
+r1006 [shape=circle];
+r1298 [shape=circle];
+r1006 -> r1298 [label="- | i=i+1"];
+r1296 [shape=circle];
+r1012 [shape=circle];
+r1296 -> r1012 [label="ipvt==jcol | returnVar_pivot=0"];
+r1008 [shape=circle];
+r1296 -> r1008 [label="!(ipvt==jcol) | -"];
+r1008 [shape=circle];
+r1009 [shape=circle];
+r1008 -> r1009 [label="- | i=order[jcol]"];
+r1009 [shape=circle];
+r1010 [shape=circle];
+r1009 -> r1010 [label="- | order[jcol]=order[ipvt]"];
+r1010 [shape=circle];
+r1012 [shape=circle];
+r1010 -> r1012 [label="- | order[ipvt]=i,\nreturnVar_pivot=1"];
+
+}

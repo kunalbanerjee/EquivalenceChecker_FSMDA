@@ -1,0 +1,57 @@
+digraph fsmdIndot {
+
+"pc.schd" [shape=note];
+r1000 [shape=circle];
+r1299 [shape=circle];
+r1000 -> r1299 [label="- | bit_index=0"];
+r1299 [shape=circle];
+r1003 [shape=circle];
+r1299 -> r1003 [label="bit_index<8 | count_0s[bit_index]=0,\ncount_1s[bit_index]=0"];
+r1292 [shape=circle];
+r1299 -> r1292 [label="!(bit_index<8) | bit_no=0"];
+r1003 [shape=circle];
+r1299 [shape=circle];
+r1003 -> r1299 [label="- | bit_index=bit_index+1"];
+r1292 [shape=circle];
+r1294 [shape=circle];
+r1292 -> r1294 [label="bit_no<8 | i=0"];
+r1020 [shape=circle];
+r1292 -> r1020 [label="!(bit_no<8) | -"];
+r1294 [shape=circle];
+r1007 [shape=circle];
+r1294 -> r1007 [label="i<leftShift(1,bit_no) | x=i"];
+r1292 [shape=circle];
+r1294 -> r1292 [label="!(i<leftShift(1,bit_no)) | bit_no=bit_no+1"];
+r1007 [shape=circle];
+r1008 [shape=circle];
+r1007 -> r1008 [label="- | xi=xorLShift(x,1,bit_no)"];
+r1008 [shape=circle];
+r1009 [shape=circle];
+r1008 -> r1009 [label="- | sT5_24=sbox[xi]"];
+r1009 [shape=circle];
+r1010 [shape=circle];
+r1009 -> r1010 [label="- | sT6_24=sbox[i]"];
+r1010 [shape=circle];
+r1296 [shape=circle];
+r1010 -> r1296 [label="- | vi=xor(sT6_24,sT5_24),\nbit_index=0"];
+r1296 [shape=circle];
+r1297 [shape=circle];
+r1296 -> r1297 [label="bit_index<8 | -"];
+r1294 [shape=circle];
+r1296 -> r1294 [label="!(bit_index<8) | i=i+1"];
+r1297 [shape=circle];
+r1014 [shape=circle];
+r1297 -> r1014 [label="andLShift(vi,1,bit_index)!=0 | sT12_29=count_1s[bit_index]"];
+r1016 [shape=circle];
+r1297 -> r1016 [label="andLShift(vi,1,bit_index)==0 | sT13_30=count_0s[bit_index]"];
+r1014 [shape=circle];
+r1017 [shape=circle];
+r1014 -> r1017 [label="- | count_1s[bit_index]=sT12_29+1"];
+r1016 [shape=circle];
+r1017 [shape=circle];
+r1016 -> r1017 [label="- | count_0s[bit_index]=sT13_30+1"];
+r1017 [shape=circle];
+r1296 [shape=circle];
+r1017 -> r1296 [label="- | bit_index=bit_index+1"];
+
+}

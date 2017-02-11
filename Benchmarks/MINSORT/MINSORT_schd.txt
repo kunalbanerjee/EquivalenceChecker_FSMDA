@@ -1,0 +1,20 @@
+"minsort.schd"
+r00 1 - | min=a[N-1], posMin=0, i=0 r04 ;
+r04 2 i<N | -    r05
+      !(i<N) | - r20 ;
+
+r05 1 - | swapped=0, min=a[i], posMin=i, j=i r09 ;
+r09 2 j<N | -    r10
+      !(j<N) | - r15 ;
+      
+r10 2 a[j]<min | -    r11
+      !(a[j]<min) | - r12 ;
+      
+r11 1 - | min=a[j], posMin=j, swapped=1 r12 ;
+r12 1 - | j=j+1 r09 ;
+
+r15 1 - | temp=a[i]             r16 ;
+r16 1 - | a[i]=a[posMin]        r17 ;
+r17 1 - | a[posMin]=temp, i=i+1 r04 ;
+
+r20 0 ;

@@ -1,0 +1,34 @@
+"balanced.org"
+q1298LB 1 - | i=0	q1299 ;
+q1299 2 i<8 | - q1000
+        !(i<8) | - q1291LELB ;
+q1000 1 - | count_1s[i]=0 q1001 ;
+q1001 1 - | count_0s[i]=0 q1297 ;
+q1297 1 - | i=i+1 q1299 ;
+
+q1291LELB 1 - | i=0	q1292 ;
+q1292 2 i<f(1,8) | - q1002
+        !(i<f(1,8)) | - q1287LELB ;
+q1002 1 - | y=sbox[i] q1294LB	;
+q1294LB 1 - | bit_index=0 q1295 ;
+q1295 2 bit_index<8 | - q1296
+        !(bit_index<8) | - q1290LE	;
+q1296 2 f2(y,1,bit_index)!=0 | - q1003
+        f2(y,1,bit_index)==0 | - q1004 ;
+q1003 1 - | count_1s[bit_index]=count_1s[bit_index]+1	q1293 ;
+
+q1004 1 - | count_0s[bit_index]=count_0s[bit_index]+1	q1293 ;
+q1293 1 - | bit_index=bit_index+1	q1295 ;
+q1290LE 1 - | i=i+1	q1292 ;
+
+q1287LELB 1 - | i=0	q1288 ;
+q1288 2 i<8 | - q1289
+        !(i<8) | - q1007LE ;
+q1289 2 count_1s[i]!=count_0s[i] | - q1005
+        count_1s[i]==count_0s[i] | - q1006 ;
+q1005 1 - | balanced=0 q1286 ;
+
+q1006 1 - | balanced=1 q1286 ;
+q1286 1 - | i=i+1 q1288 ;
+
+q1007LE 0 ;

@@ -1,0 +1,29 @@
+"minsort.org"
+q00 1 - | min = a[N-1] q01 ;
+q01 1 - | posMin = 0   q02 ;
+q02 1 - | i = 0        q03 ;
+q03 1 - | j = 0        q04 ;
+q04 2 i<N | -    q05
+      !(i<N) | - q20 ;
+
+q05 1 - | swapped = 0 q06 ;
+q06 1 - | min = a[i]  q07 ;
+q07 1 - | posMin = i  q08 ;
+q08 1 - | j = i       q09 ;
+q09 2 j<N | -    q10
+      !(j<N) | - q15 ;
+      
+q10 2 a[j]<min | -    q11
+      !(a[j]<min) | - q14 ;
+      
+q11 1 - | min = a[j]  q12 ;
+q12 1 - | posMin = j  q13 ;
+q13 1 - | swapped = 1 q14 ; 
+q14 1 - | j = j+1     q09 ;
+
+q15 1 - | temp = a[i]      q16 ;
+q16 1 - | a[i] = a[posMin] q17 ;
+q17 1 - | a[posMin] = temp q18 ;
+q18 1 - | i = i+1          q04 ;
+
+q20 0 ;

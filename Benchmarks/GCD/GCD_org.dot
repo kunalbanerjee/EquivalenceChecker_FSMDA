@@ -1,0 +1,56 @@
+digraph fsmdIndot {
+
+"gcd_array.org" [shape=note];
+q00 [shape=circle];
+q01 [shape=circle];
+q00 -> q01 [label="- | read(P0,y),\nread(P1,N)"];
+q01 [shape=circle];
+q02 [shape=circle];
+q01 -> q02 [label="- | i=1"];
+q02 [shape=circle];
+q03 [shape=circle];
+q02 -> q03 [label="i<N | res=1"];
+q50 [shape=circle];
+q02 -> q50 [label="!(i<N) | -"];
+q03 [shape=circle];
+q04 [shape=circle];
+q03 -> q04 [label="y[i-1]!=y[i] | -"];
+q40 [shape=circle];
+q03 -> q40 [label="y[i-1]==y[i] | -"];
+q04 [shape=circle];
+q05 [shape=circle];
+q04 -> q05 [label="y[i-1]%2==0 | -"];
+q10 [shape=circle];
+q04 -> q10 [label="!(y[i-1]%2==0) | -"];
+q05 [shape=circle];
+q06 [shape=circle];
+q05 -> q06 [label="y[i]%2==0 | res=res*2"];
+q03 [shape=circle];
+q05 -> q03 [label="!(y[i]%2==0) | y[i-1]=y[i-1]/2"];
+q06 [shape=circle];
+q03 [shape=circle];
+q06 -> q03 [label="- | y[i-1]=y[i-1]/2,\ny[i]=y[i]/2"];
+q10 [shape=circle];
+q03 [shape=circle];
+q10 -> q03 [label="y[i]%2==0 | y[i]=y[i]/2"];
+q20 [shape=circle];
+q10 -> q20 [label="!(y[i]%2==0) | -"];
+q20 [shape=circle];
+q03 [shape=circle];
+q20 -> q03 [label="y[i-1]>y[i] | y[i-1]=y[i-1]-y[i]"];
+q03 [shape=circle];
+q20 -> q03 [label="!(y[i-1]>y[i]) | y[i]=y[i]-y[i-1]"];
+q40 [shape=circle];
+q41 [shape=circle];
+q40 -> q41 [label="- | res=res*y[i-1]"];
+q41 [shape=circle];
+q42 [shape=circle];
+q41 -> q42 [label="- | y[i]=res"];
+q42 [shape=circle];
+q02 [shape=circle];
+q42 -> q02 [label="- | i=i+1"];
+q50 [shape=circle];
+q51 [shape=circle];
+q50 -> q51 [label="- | OUT(P0,y[N-1])"];
+
+}

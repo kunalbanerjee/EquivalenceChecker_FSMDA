@@ -1,0 +1,34 @@
+"fourier.org"
+qq1000 1 - | angle_numerator=(2)*(DDC_PI)	qq1992LB	;
+qq1992LB 1 - | BlockSize=2	qq1993	;
+qq1993 2 BlockSize<=NumSamples | - 	qq1003	 !(BlockSize<=NumSamples) | - 	qq1023LE	; 	
+qq1003 1 - | delta_angle=(angle_numerator)/(BlockSize)	qq1004	; 	
+qq1004 1 - | sm2=(-2)*(delta_angle)	qq1005	; 	
+qq1005 1 - | sm1=( -delta_angle )	qq1006	; 	
+qq1006 1 - | cm2=(-2)*(delta_angle)	qq1007	; 	
+qq1007 1 - | cm1=( -delta_angle )	qq1008	; 	
+qq1008 1 - | w=(2)*(cm1)	qq1995LB	;
+qq1995LB 1 - | i=0	qq1996	;
+qq1996 2 i<NumSamples | - 	qq1009	 !(i<NumSamples) | - 	qq1991LE	;	
+qq1009 1 - | ar[(i)*(M)+(2)*(N)+i]=cm2	qq1010	; 	
+qq1010 1 - | ar[(i)*(M)+(1)*(N)+i]=cm1	qq1011	; 	
+qq1011 1 - | ai[(i)*(M)+(2)*(N)+i]=sm2	qq1012	; 	
+qq1012 1 - | ai[(i)*(M)+(1)*(N)+i]=sm1	qq1998LB	;
+qq1998LB 1 - | j=i,n=0	qq1999	;
+qq1999 2 n<BlockSize | - 	qq1013	 !(n<BlockSize) | - 	qq1994LE	;	
+qq1013 1 - | ar[(i)*(M)+(0)*(N)+j]=(w)*(ar[(i)*(M)+(1)*(N)+j])-ar[(i)*(M)+(2)*(N)+j]	qq1014	; 	
+qq1014 1 - | ar[(i)*(M)+(2)*(N)+j+1]=ar[(i)*(M)+(1)*(N)+j]	qq1015	; 	
+qq1015 1 - | ar[(i)*(M)+(1)*(N)+j+1]=ar[(i)*(M)+(0)*(N)+j]	qq1016	; 	
+qq1016 1 - | ai[(i)*(M)+(0)*(N)+j]=(w)*(ai[(i)*(M)+(1)*(N)+j])-ai[(i)*(M)+(2)*(N)+j]	qq1017	; 	
+qq1017 1 - | ai[(i)*(M)+(2)*(N)+j+1]=ai[(i)*(M)+(1)*(N)+j]	qq1018	; 	
+qq1018 1 - | ai[(i)*(M)+(1)*(N)+j+1]=ai[(i)*(M)+(0)*(N)+j]	qq1019	; 	
+qq1019 1 - | tr[(i)*(M)+j]=(ar[(i)*(M)+(0)*(N)+j])*(RealIn[j+BlockSize])-(ai[(i)*(M)+(0)*(N)+j])*(ImagIn[j+BlockSize])	qq1020	; 	
+qq1020 1 - | ti[(i)*(M)+j]=(ar[(i)*(M)+(0)*(N)+j])*(ImagIn[j+BlockSize])+(ai[(i)*(M)+(0)*(N)+j])*(RealIn[j+BlockSize])	qq1021	; 	
+qq1021 1 - | RealOut[(i)*(M)+j]=RealIn[j]-tr[(i)*(M)+j]	qq1022	; 	
+qq1022 1 - | ImagOut[(i)*(M)+j]=ImagIn[j]-ti[(i)*(M)+j]	qq1997	;
+qq1997 1 - | j=j+1,n=n+1	qq1999	;
+qq1991LE 1 - | BlockSize=(BlockSize)*(2)	qq1993	;
+qq1994LE 1 - | i=i+BlockSize	qq1996	;
+qq1023LE 0;
+
+

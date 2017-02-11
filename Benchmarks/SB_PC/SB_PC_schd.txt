@@ -1,0 +1,30 @@
+"pc.schd"
+r1000 1 - | bit_index=0	r1299 ;
+r1299 2 bit_index<8    | count_0s[bit_index]=0, count_1s[bit_index]=0 r1003
+        !(bit_index<8) | bit_no=0 r1292 ;
+        
+r1003 1 - | bit_index=bit_index+1 r1299	;
+	
+r1292 2 bit_no<8    | i=0 r1294
+        !(bit_no<8) | -   r1020 ; 
+
+r1294 2 i<leftShift(1,bit_no)    | x=i             r1007
+        !(i<leftShift(1,bit_no)) | bit_no=bit_no+1 r1292 ; 
+
+r1007 1 - | xi=xorLShift(x,1,bit_no) r1008 ; 	
+r1008 1 - | sT5_24=sbox[xi] r1009 ; 	
+r1009 1 - | sT6_24=sbox[i]  r1010 ; 	
+r1010 1 - | vi=xor(sT6_24,sT5_24), bit_index=0 r1296 ; 	
+
+r1296 2 bit_index<8    | - r1297
+        !(bit_index<8) | i=i+1 r1294 ;
+ 	
+r1297 2 andLShift(vi,1,bit_index)!=0 | sT12_29=count_1s[bit_index] r1014 
+        andLShift(vi,1,bit_index)==0 | sT13_30=count_0s[bit_index] r1016 ; 
+	
+r1014 1 - | count_1s[bit_index]=sT12_29+1 r1017 ;
+	
+r1016 1 - | count_0s[bit_index]=sT13_30+1 r1017 ; 	
+r1017 1 - | bit_index=bit_index+1         r1296 ;
+ 	
+r1020 0;

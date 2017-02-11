@@ -1,0 +1,41 @@
+digraph fsmdIndot {
+
+"minsort.schd" [shape=note];
+r00 [shape=circle];
+r04 [shape=circle];
+r00 -> r04 [label="- | min=a[N-1],\nposMin=0,\ni=0"];
+r04 [shape=circle];
+r05 [shape=circle];
+r04 -> r05 [label="i<N | -"];
+r20 [shape=circle];
+r04 -> r20 [label="!(i<N) | -"];
+r05 [shape=circle];
+r09 [shape=circle];
+r05 -> r09 [label="- | swapped=0,\nmin=a[i],\nposMin=i,\nj=i"];
+r09 [shape=circle];
+r10 [shape=circle];
+r09 -> r10 [label="j<N | -"];
+r15 [shape=circle];
+r09 -> r15 [label="!(j<N) | -"];
+r10 [shape=circle];
+r11 [shape=circle];
+r10 -> r11 [label="a[j]<min | -"];
+r12 [shape=circle];
+r10 -> r12 [label="!(a[j]<min) | -"];
+r11 [shape=circle];
+r12 [shape=circle];
+r11 -> r12 [label="- | min=a[j],\nposMin=j,\nswapped=1"];
+r12 [shape=circle];
+r09 [shape=circle];
+r12 -> r09 [label="- | j=j+1"];
+r15 [shape=circle];
+r16 [shape=circle];
+r15 -> r16 [label="- | temp=a[i]"];
+r16 [shape=circle];
+r17 [shape=circle];
+r16 -> r17 [label="- | a[i]=a[posMin]"];
+r17 [shape=circle];
+r04 [shape=circle];
+r17 -> r04 [label="- | a[posMin]=temp,\ni=i+1"];
+
+}

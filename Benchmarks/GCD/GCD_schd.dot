@@ -1,0 +1,38 @@
+digraph fsmdIndot {
+
+"gcd_array.schd" [shape=note];
+q00 [shape=circle];
+q01 [shape=circle];
+q00 -> q01 [label="- | read(P0,y),\nread(P1,N),\ni=1"];
+q01 [shape=circle];
+q02 [shape=circle];
+q01 -> q02 [label="i<N | res=1"];
+q50 [shape=circle];
+q01 -> q50 [label="!(i<N) | -"];
+q02 [shape=circle];
+q03 [shape=circle];
+q02 -> q03 [label="y[i-1]!=y[i] | -"];
+q40 [shape=circle];
+q02 -> q40 [label="y[i-1]==y[i] | -"];
+q03 [shape=circle];
+q02 [shape=circle];
+q03 -> q02 [label="y[i-1]%2==0&&y[i]%2==0 | res=res*2,\ny[i-1]=y[i-1]/2,\ny[i]=y[i]/2"];
+q02 [shape=circle];
+q03 -> q02 [label="y[i-1]%2==0&&!y[i]%2==0 | y[i-1]=y[i-1]/2"];
+q02 [shape=circle];
+q03 -> q02 [label="!y[i-1]%2==0&&y[i]%2==0 | y[i]=y[i]/2"];
+q02 [shape=circle];
+q03 -> q02 [label="!y[i-1]%2==0&&!y[i]%2==0&&y[i-1]>y[i] | y[i-1]=y[i-1]-y[i]"];
+q02 [shape=circle];
+q03 -> q02 [label="!y[i-1]%2==0&&!y[i]%2==0&&!y[i-1]>y[i] | y[i]=y[i]-y[i-1]"];
+q40 [shape=circle];
+q41 [shape=circle];
+q40 -> q41 [label="- | res=res*y[i-1]"];
+q41 [shape=circle];
+q01 [shape=circle];
+q41 -> q01 [label="- | y[i]=res,\ni=i+1"];
+q50 [shape=circle];
+q51 [shape=circle];
+q50 -> q51 [label="- | OUT(P0,y[N-1])"];
+
+}

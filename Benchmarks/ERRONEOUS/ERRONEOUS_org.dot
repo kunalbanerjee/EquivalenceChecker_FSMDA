@@ -1,0 +1,56 @@
+digraph fsmdIndot {
+
+"NotEquivalent.org" [shape=note];
+a0 [shape=circle];
+a1 [shape=circle];
+a0 -> a1 [label="- | i=0"];
+a1 [shape=circle];
+a3 [shape=circle];
+a1 -> a3 [label="i<=n-2 | -"];
+a15 [shape=circle];
+a1 -> a15 [label="!(i<=n-2) | -"];
+a4 [shape=circle];
+a5 [shape=circle];
+a4 -> a5 [label="- | j_star=i"];
+a3 [shape=circle];
+a4 [shape=circle];
+a3 -> a4 [label="- | min=a[i]"];
+a5 [shape=circle];
+a6 [shape=circle];
+a5 -> a6 [label="- | j=j+1"];
+a6 [shape=circle];
+a7 [shape=circle];
+a6 -> a7 [label="j<=n-1 | -"];
+a11 [shape=circle];
+a6 -> a11 [label="!(j<=n-1) | -"];
+a7 [shape=circle];
+a8 [shape=circle];
+a7 -> a8 [label="a[j]<min | -"];
+a10 [shape=circle];
+a7 -> a10 [label="!(a[j]<min) | -"];
+a8 [shape=circle];
+a9 [shape=circle];
+a8 -> a9 [label="- | min=a[j]"];
+a9 [shape=circle];
+a10 [shape=circle];
+a9 -> a10 [label="- | j_star=j"];
+a10 [shape=circle];
+a6 [shape=circle];
+a10 -> a6 [label="- | j=j+1"];
+a11 [shape=circle];
+a12 [shape=circle];
+a11 -> a12 [label="- | temp=a[i]"];
+a12 [shape=circle];
+a13 [shape=circle];
+a12 -> a13 [label="- | a[i]=a[j_star]"];
+a13 [shape=circle];
+a14 [shape=circle];
+a13 -> a14 [label="- | a[j_star]=temp"];
+a14 [shape=circle];
+a1 [shape=circle];
+a14 -> a1 [label="- | i=i+1"];
+a15 [shape=circle];
+a16 [shape=circle];
+a15 -> a16 [label="- | -"];
+
+}

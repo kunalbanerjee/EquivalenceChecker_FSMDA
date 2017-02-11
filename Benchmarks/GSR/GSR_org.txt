@@ -1,0 +1,17 @@
+"GSR.org"
+qq1000 1 - | jsw=1	qq1002	; 	
+qq1002 1 - | h=(1)/(n-1)	qq1003	; 	
+qq1003 1 - | h2=(h)*(h)	qq1992LB	; 	
+qq1004 1 - | isw=jsw	qq1995LB	; 	
+qq1005 1 - | u[i][j]=(u[i+1][j]+u[i-1][j]+u[i][j+1]+u[i][j-1]-(h2)*(rhs[i][j]))/(4)	qq1997	; 	
+qq1991LE 1 - | ipass=ipass+1,jsw=3-jsw	qq1993	;
+qq1992LB 1 - | ipass=1	qq1993	;
+qq1993 2 ipass<=2 | - 	qq1004	 !(ipass<=2) | - 	qq1006LE	; 	
+qq1994LE 1 - | j=j+1,isw=3-isw	qq1996	;
+qq1995LB 1 - | j=2	qq1996	;
+qq1996 2 j<n | - 	qq1998LB	 !(j<n) | - 	qq1991LE	; 	
+qq1997 1 - | i=i+2	qq1999	; 	
+qq1998LB 1 - | i=isw+1	qq1999	;
+qq1999 2 i<n | - 	qq1005	 !(i<n) | - 	qq1994LE	; 	
+qq1006LE 0;
+

@@ -1,0 +1,26 @@
+"sac.schd"
+r1000 1 - | x=0	r1292 ;
+r1292 2 x<=255 | bit_index=0 r1299
+        !(x<=255) | - r1017 ; 	
+
+r1299 2 bit_index<8 | count_0s[bit_index]=0, count_1s[bit_index]=0 r1004
+        !(bit_index<8) | - r1005 ;
+r1004 1 - | bit_index=bit_index+1 r1299 ;
+
+r1005 1 - | i=1, sT4_22=sbox[x]  r1007 ; 	
+r1007 1 - | xi=power(x,i)        r1008 ; 	
+r1008 1 - | sT3_22=sbox[xi]      r1009 ; 	
+r1009 1 - | vi=power(sT4_22,sT3_22), bit_index=0 r1296 ; 	
+r1296 2 bit_index<8 | - r1297
+        !(bit_index<8) | - r1015 ; 
+        
+r1297 2 g(vi,1,bit_index)!=0 | count_1s[bit_index]=count_1s[bit_index]+1 r1014
+        g(vi,1,bit_index)==0 | count_0s[bit_index]=count_0s[bit_index]+1 r1014	; 
+ 	
+r1014 1 - | bit_index=bit_index+1 r1296 ;
+	
+r1015 1 - | i=leftShift(i,1) r1294 ; 	
+r1294 2 i!=f(1,8) | - r1007
+        i==f(1,8) | x=x+1 r1292 ; 	
+
+r1017 0 ;

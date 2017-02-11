@@ -1,0 +1,33 @@
+"gen_assort_matrix.org"
+q00 1 - | read(P0,l), read(P1,m), read(P2,n), read(P3,frac_low) q01 ;
+q01 1 - | i = 0, j = 0, total = 1, nl = 0, nm = 0 q02 ;
+q02 1 - | sum_deg_l = 0, sum_deg_m = 0, total_edges = 0 q03 ;
+q03 1 - | i = 1 q04 ;
+q04 2 i < (m+1) | j = 1 q05 
+      !(i<(m+1)) | - q08 ;
+q05 2 j < (m+1) | assort_matrix[i][j] = 0 q06
+      !(j < (m+1)) | - q07 ; 
+q06 1 - | j = j+1 q05 ;
+q07 1 - | i = i+1 q04 ;
+q08 1 - | nl = frac_low*n q09 ;
+q09 1 - | nm = n - nl, sum_deg_l = l*nl q10 ;
+q10 1 - | sum_deg_m = m*nm q11 ;
+q11 1 - | total_edges = (sum_deg_l + sum_deg_m )/2 q12 ;
+
+q12 2 sum_deg_l > sum_deg_m    | - q13
+      !(sum_deg_l > sum_deg_m) | - q20 ;
+
+q13 1 - | temp = (sum_deg_m*100/total_edges)/200 q14 ;
+q14 1 - | assort_matrix[m][m] = temp q15 ;
+q15 1 - | assort_matrix[l][m] = -2*assort_matrix[m][m] + sum_deg_m /total_edges,
+          assort_matrix[m][l] = -2*assort_matrix[m][m] + sum_deg_m /total_edges,
+          assort_matrix[l][l] =  assort_matrix[m][m] + (sum_deg_l - sum_deg_m)/(2*total_edges) q30 ;
+
+q20 1 - | temp = (sum_deg_l*100/total_edges)/200 q21 ;
+q21 1 - | assort_matrix[l][l] = temp q23 ;
+q23 1 - | assort_matrix[l][m] = -2*assort_matrix[l][l] + sum_deg_l /total_edges,
+          assort_matrix[m][l] = -2*assort_matrix[l][l] + sum_deg_l /total_edges,
+          assort_matrix[m][m] =  assort_matrix[l][l] + (sum_deg_m - sum_deg_l)/(2*total_edges) q30 ;
+
+q30 0 ;
+

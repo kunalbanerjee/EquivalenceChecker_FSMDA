@@ -1,0 +1,37 @@
+"gen_assort_matrix.schd"
+q00 1 - | read(P0,l), read(P1,m), read(P2,n), read(P3,frac_low) q01 ;
+q01 1 - | i = 1, j = 0, total = 1, nl = 0, nm = 0, sum_deg_l = 0, sum_deg_m = 0, total_edges = 0 q04 ;
+q04 2 i < (m+1)  | j = 1 q05 
+      !(i<(m+1)) | - q08 ;
+q05 2 j < (m+1) | assort_matrix[i][j] = 0 q06
+      !(j < (m+1)) | - q07 ; 
+q06 1 - | j = j+1 q05 ;
+q07 1 - | i = i+1 q04 ;
+
+q08 1 - | nl = frac_low*n q09 ;
+q09 1 - | nm = n - nl, sum_deg_l = l*nl q10 ;
+q10 1 - | sum_deg_m = m*nm q11 ;
+q11 1 - | total_edges = (sum_deg_l + sum_deg_m )/2 q12 ;
+
+q12 2 sum_deg_l > sum_deg_m | - q13
+      !(sum_deg_l > sum_deg_m) | - q30 ;
+q13 1 - | sT1_1 = sum_deg_m*100 q14 ;
+q14 1 - | sT1_2 = sT1_1/total_edges q15 ;
+q15 1 - | assort_matrix[m][m] = sT1_2/200 q17 ;
+q17 1 - | sT1_3 = sum_deg_m/total_edges, sT1_4 = 2*assort_matrix[m][m] q18 ;
+q18 1 - | assort_matrix[l][m] = sT1_3 - sT1_4, assort_matrix[m][l] = sT1_3 - sT1_4 q19 ;
+q19 1 - | sT1_5 = (sum_deg_l - sum_deg_m), sT1_6 = (2*total_edges) q20 ;
+q20 1 - | sT1_7 = sT1_5 / sT1_6 q21 ;
+q21 1 - | assort_matrix[l][l] =  assort_matrix[m][m] + sT1_7 q40 ;
+
+q30 1 - | sT2_1 = sum_deg_l*100 q31 ;
+q31 1 - | sT2_2 = sT2_1/total_edges q32 ;
+q32 1 - | assort_matrix[l][l] = sT2_2/200 q34 ;
+q34 1 - | sT2_3 = sum_deg_l/total_edges, sT2_4 = 2*assort_matrix[l][l], 
+          sT2_5 = (sum_deg_m - sum_deg_l), sT2_6 = (2*total_edges) q35 ;
+q35 1 - | sT2_7 = sT2_5 / sT2_6 q36 ;
+q36 1 - | assort_matrix[l][m] = sT2_3 - sT2_4, assort_matrix[m][l] = sT2_3 - sT2_4, 
+          assort_matrix[m][m] =  assort_matrix[l][l] + sT2_7 q40 ;
+
+q40 0 ;
+

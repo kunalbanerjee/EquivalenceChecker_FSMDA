@@ -1,0 +1,35 @@
+"sac.org"
+q1289LB 1 - | x=0  q1290 ;
+q1290 2 x<=255 | - q1298LB
+        !(x<=255) | - q1008LE ;
+        
+q1298LB 1 - | bit_index=0 q1299 ;
+q1299 2 bit_index<8 | - q1000
+        !(bit_index<8) | - q1002LE ; 	
+
+q1000 1 - | count_0s[bit_index]=0 q1001 ; 
+q1001 1 - | count_1s[bit_index]=0 q1297 ;
+q1297 1 - | bit_index=bit_index+1 q1299	;
+ 	
+q1002LE 1 - | i=1 q1003 ;
+q1003 1 - | xi=power(x,i) q1004 ; 	
+q1004 1 - | vi=power(sbox[x],sbox[xi]) q1294LB	;
+
+q1294LB 1 - | bit_index=0 q1295 ;
+q1295 2 bit_index<8 | - q1296
+        !(bit_index<8) | - q1007LE ; 	
+q1296 2 g(vi,1,bit_index)!=0 | - q1005
+        g(vi,1,bit_index)==0 | - q1006 ; 	
+ 	
+q1005 1 - | count_1s[bit_index]=count_1s[bit_index]+1 q1293 ; 	
+q1006 1 - | count_0s[bit_index]=count_0s[bit_index]+1 q1293 ; 
+q1293 1 - | bit_index=bit_index+1 q1295 ;
+
+q1007LE 1 - | i=leftShift(i,1) q1292 ;
+
+q1292 2 i!=f(1,8) | - q1003
+        i==f(1,8) | - q1288 ;
+
+q1288 1 - | x=x+1 q1290 ; 
+
+q1008LE 0 ;

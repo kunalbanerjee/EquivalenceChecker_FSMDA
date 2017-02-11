@@ -1,0 +1,13 @@
+"GSR.schd"
+qq1000 1 - | jsw=1, sT0_18=n-1	qq1003	; 	
+qq1003 1 - | h=(1)/(sT0_18)	qq1004	; 	
+qq1004 1 - | h2=(h)*(h), ipass=1	qq1995	; 	
+qq1012 1 - | sT26_28=sT24_28+sT25_28	qq1013	; 	
+qq1013 1 - | sT27_28=sT26_28-sT7_28	qq1014	; 	
+qq1014 1 - | u[i][j]=(sT27_28)/(4)	qq1015	; 	
+qq1015 1 - | i=i+2	qq1999	; 	
+qq1995 2 ipass<=2 | isw=jsw, j=2	qq1997	 !(ipass<=2) | - 	qq1020	; 	
+qq1997 2 j<n | i=isw+1	qq1999	 !(j<n) | ipass=ipass+1, jsw=3-jsw	qq1995	; 	
+qq1999 2 i<n | sT7_28=(h2)*(rhs[i][j]), sT24_28=u[i+1][j]+u[i-1][j], sT25_28=u[i][j+1]+u[i][j-1]	qq1012	 !(i<n) | j=j+1, isw=3-isw	qq1997	; 	
+qq1020 0;
+

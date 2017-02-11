@@ -1,0 +1,27 @@
+"balanced.schd"
+r1000 1 - | i=0	r1298 ;
+r1298 2 i<8 | count_1s[i]=0, count_0s[i]=0 r1003
+        !(i<8) | i=0 r1293 ; 	 
+r1003 1 - | i=i+1 r1298 ; 
+	
+r1293 2 i<f(1,8) | y=sbox[i], bit_index=0 r1296
+        !(i<f(1,8)) | - r1012 ;     	
+
+r1296 2 bit_index<8 | - r1299
+        !(bit_index<8) | -  r1011 ;
+
+r1299 2 f2(y,1,bit_index)!=0 | count_1s[bit_index]=count_1s[bit_index]+1 r1010
+        f2(y,1,bit_index)==0 | count_0s[bit_index]=count_0s[bit_index]+1 r1010 ; 	
+
+r1010 1 - | bit_index=bit_index+1 r1296	; 
+r1011 1 - | i=i+1	r1293 ; 	
+
+r1012 1 - | i=0	r1291 ;
+r1291 2 i<8 | - r1292
+        !(i<8) | - r1018 ; 	
+r1292 2 count_1s[i]!=count_0s[i] | balanced=0 r1017
+        count_1s[i]==count_0s[i] | balanced=1 r1017 ; 	
+
+r1017 1 - | i=i+1 r1291 ; 	
+	
+r1018 0 ;

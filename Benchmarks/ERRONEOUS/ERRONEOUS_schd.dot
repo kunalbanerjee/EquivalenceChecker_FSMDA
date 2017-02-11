@@ -1,0 +1,53 @@
+digraph fsmdIndot {
+
+"NotEquivalent.schd" [shape=note];
+b0 [shape=circle];
+b1 [shape=circle];
+b0 -> b1 [label="- | i=0"];
+b1 [shape=circle];
+b2 [shape=circle];
+b1 -> b2 [label="- | sT6_12=i+1,\nsT7_11=a[i]"];
+b2 [shape=circle];
+b3 [shape=circle];
+b2 -> b3 [label="i<=n-2 | -"];
+b13 [shape=circle];
+b2 -> b13 [label="!(i<=n-2) | -"];
+b3 [shape=circle];
+b4 [shape=circle];
+b3 -> b4 [label="- | min=sT7_11,\nj_star=i,\nj=sT6_12"];
+b4 [shape=circle];
+b5 [shape=circle];
+b4 -> b5 [label="- | sT8_12=j+1,\nsT9_13=a[j]"];
+b5 [shape=circle];
+b6 [shape=circle];
+b5 -> b6 [label="j<=n-1 | -"];
+b10 [shape=circle];
+b5 -> b10 [label="!(j<=n-1) | -"];
+b6 [shape=circle];
+b7 [shape=circle];
+b6 -> b7 [label="sT9_13<min | -"];
+b9 [shape=circle];
+b6 -> b9 [label="!(sT9_13<min) | -"];
+b7 [shape=circle];
+b8 [shape=circle];
+b7 -> b8 [label="- | min=sT9_13,\nj_star=j,\nj=sT8_12"];
+b9 [shape=circle];
+b8 [shape=circle];
+b9 -> b8 [label="- | j=sT8_12"];
+b8 [shape=circle];
+b5 [shape=circle];
+b8 -> b5 [label="- | sT8_12=j+1,\nsT9_13=a[j]"];
+b10 [shape=circle];
+b11 [shape=circle];
+b10 -> b11 [label="- | a[i]=sT7_11"];
+b11 [shape=circle];
+b12 [shape=circle];
+b11 -> b12 [label="- | a[j_star]=sT7_11,\ni=sT6_12"];
+b12 [shape=circle];
+b2 [shape=circle];
+b12 -> b2 [label="- | sT6_12=i+1,\nsT7_11=a[i]"];
+b13 [shape=circle];
+b14 [shape=circle];
+b13 -> b14 [label="- | -"];
+
+}

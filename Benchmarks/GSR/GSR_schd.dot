@@ -1,0 +1,41 @@
+digraph fsmdIndot {
+
+"GSR.schd" [shape=note];
+qq1000 [shape=circle];
+qq1003 [shape=circle];
+qq1000 -> qq1003 [label="- | jsw=1,\nsT0_18=n-1"];
+qq1003 [shape=circle];
+qq1004 [shape=circle];
+qq1003 -> qq1004 [label="- | h=(1)/(sT0_18)"];
+qq1004 [shape=circle];
+qq1995 [shape=circle];
+qq1004 -> qq1995 [label="- | h2=(h)*(h),\nipass=1"];
+qq1012 [shape=circle];
+qq1013 [shape=circle];
+qq1012 -> qq1013 [label="- | sT26_28=sT24_28+sT25_28"];
+qq1013 [shape=circle];
+qq1014 [shape=circle];
+qq1013 -> qq1014 [label="- | sT27_28=sT26_28-sT7_28"];
+qq1014 [shape=circle];
+qq1015 [shape=circle];
+qq1014 -> qq1015 [label="- | u[i][j]=(sT27_28)/(4)"];
+qq1015 [shape=circle];
+qq1999 [shape=circle];
+qq1015 -> qq1999 [label="- | i=i+2"];
+qq1995 [shape=circle];
+qq1997 [shape=circle];
+qq1995 -> qq1997 [label="ipass<=2 | isw=jsw,\nj=2"];
+qq1020 [shape=circle];
+qq1995 -> qq1020 [label="!(ipass<=2) | -"];
+qq1997 [shape=circle];
+qq1999 [shape=circle];
+qq1997 -> qq1999 [label="j<n | i=isw+1"];
+qq1995 [shape=circle];
+qq1997 -> qq1995 [label="!(j<n) | ipass=ipass+1,\njsw=3-jsw"];
+qq1999 [shape=circle];
+qq1012 [shape=circle];
+qq1999 -> qq1012 [label="i<n | sT7_28=(h2)*(rhs[i][j]),\nsT24_28=u[i+1][j]+u[i-1][j],\nsT25_28=u[i][j+1]+u[i][j-1]"];
+qq1997 [shape=circle];
+qq1999 -> qq1997 [label="!(i<n) | j=j+1,\nisw=3-isw"];
+
+}

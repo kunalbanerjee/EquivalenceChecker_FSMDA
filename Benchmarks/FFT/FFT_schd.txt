@@ -1,0 +1,21 @@
+"fourier.schd"
+qq1000 1 - | angle_numerator=(DDC_PI)*(2), BlockSize=2	qq1995	;
+qq1995 2 BlockSize<=NumSamples | - 	qq1003	 !(BlockSize<=NumSamples) | - 	qq1036	;	
+qq1003 1 - | delta_angle=(angle_numerator)/(BlockSize), sm2=(-2)*(delta_angle), sm1=( -delta_angle ), cm2=(-2)*(delta_angle), cm1=( -delta_angle )	qq1008	; 	
+qq1008 1 - | w=(cm1)*(2), i=0	qq1997	;
+qq1997 2 i<NumSamples | - 	qq1010	 !(i<NumSamples) | - 	qq1035	;
+qq1010 1 - | ar[(i)*(M)+(2)*(N)+i]=cm2, ar[(i)*(M)+(1)*(N)+i]=cm1	qq1012	; 	
+qq1012 1 - | ai[(i)*(M)+(2)*(N)+i]=sm2, ai[(i)*(M)+(1)*(N)+i]=sm1	qq1014	; 	
+qq1014 1 - | j=i, n=0	qq1999	;
+qq1999 2 n<BlockSize | - 	qx1013	 !(n<BlockSize) | - 	qq1034	;	
+qx1013 1 - | ar[(i)*(M)+(0)*(N)+j]=(w)*(ar[(i)*(M)+(1)*(N)+j])-ar[(i)*(M)+(2)*(N)+j]	qx1014	; 	
+qx1014 1 - | ar[(i)*(M)+(2)*(N)+j+1]=ar[(i)*(M)+(1)*(N)+j], ar[(i)*(M)+(1)*(N)+j+1]=ar[(i)*(M)+(0)*(N)+j]	qx1016	; 	
+qx1016 1 - | ai[(i)*(M)+(0)*(N)+j]=(w)*(ai[(i)*(M)+(1)*(N)+j])-ai[(i)*(M)+(2)*(N)+j]	qx1017	; 	
+qx1017 1 - | ai[(i)*(M)+(2)*(N)+j+1]=ai[(i)*(M)+(1)*(N)+j], ai[(i)*(M)+(1)*(N)+j+1]=ai[(i)*(M)+(0)*(N)+j]	qx1019	; 	
+qx1019 1 - | tr[(i)*(M)+j]=(ar[(i)*(M)+(0)*(N)+j])*(RealIn[j+BlockSize])-(ai[(i)*(M)+(0)*(N)+j])*(ImagIn[j+BlockSize]), ti[(i)*(M)+j]=(ar[(i)*(M)+(0)*(N)+j])*(ImagIn[j+BlockSize])+(ai[(i)*(M)+(0)*(N)+j])*(RealIn[j+BlockSize])	qq1030	; 		
+qq1030 1 - | RealOut[(i)*(M)+j]=RealIn[j]-tr[(i)*(M)+j], ImagOut[(i)*(M)+j]=ImagIn[j]-ti[(i)*(M)+j]	qq1032	; 	
+qq1032 1 - | j=j+1, n=n+1	qq1999	; 	
+qq1034 1 - | i=i+BlockSize	qq1997	; 	
+qq1035 1 - | BlockSize=(BlockSize)*(2)	qq1995	; 	
+qq1036 0;
+

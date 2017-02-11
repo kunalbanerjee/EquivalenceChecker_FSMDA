@@ -1,0 +1,24 @@
+"NotEquivalent.org"
+a0 1 - | i = 0 a1 ;
+a1 2 i <= n-2 | - a3
+     !(i <= n-2) | - a15 ;
+
+a4 1 - | j_star = i a5 ;
+a3 1 - | min = a[i] a4 ;
+a5 1 - | j = j+1 a6 ;
+
+a6 2 j <= n-1 | - a7
+     !(j <= n-1) | - a11 ;
+a7 2 a[j] < min | - a8
+     !(a[j] < min) | - a10 ;
+a8 1 - | min = a[j] a9 ;
+a9 1 - | j_star = j a10 ;
+a10 1 - | j = j+1 a6 ;
+
+a11 1 - | temp = a[i] a12 ;
+a12 1 - | a[i] = a[j_star] a13 ;
+a13 1 - | a[j_star] = temp a14 ;
+a14 1 - | i = i+1 a1 ;
+
+a15 1 - | - a16 ;
+a16 0 ;

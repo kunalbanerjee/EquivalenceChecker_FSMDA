@@ -1,0 +1,53 @@
+digraph fsmdIndot {
+
+"GSR.org" [shape=note];
+qq1000 [shape=circle];
+qq1002 [shape=circle];
+qq1000 -> qq1002 [label="- | jsw=1"];
+qq1002 [shape=circle];
+qq1003 [shape=circle];
+qq1002 -> qq1003 [label="- | h=(1)/(n-1)"];
+qq1003 [shape=circle];
+qq1992LB [shape=circle];
+qq1003 -> qq1992LB [label="- | h2=(h)*(h)"];
+qq1004 [shape=circle];
+qq1995LB [shape=circle];
+qq1004 -> qq1995LB [label="- | isw=jsw"];
+qq1005 [shape=circle];
+qq1997 [shape=circle];
+qq1005 -> qq1997 [label="- | u[i][j]=(u[i+1][j]+u[i-1][j]+u[i][j+1]+u[i][j-1]-(h2)*(rhs[i][j]))/(4)"];
+qq1991LE [shape=circle];
+qq1993 [shape=circle];
+qq1991LE -> qq1993 [label="- | ipass=ipass+1,\njsw=3-jsw"];
+qq1992LB [shape=circle];
+qq1993 [shape=circle];
+qq1992LB -> qq1993 [label="- | ipass=1"];
+qq1993 [shape=circle];
+qq1004 [shape=circle];
+qq1993 -> qq1004 [label="ipass<=2 | -"];
+qq1006LE [shape=circle];
+qq1993 -> qq1006LE [label="!(ipass<=2) | -"];
+qq1994LE [shape=circle];
+qq1996 [shape=circle];
+qq1994LE -> qq1996 [label="- | j=j+1,\nisw=3-isw"];
+qq1995LB [shape=circle];
+qq1996 [shape=circle];
+qq1995LB -> qq1996 [label="- | j=2"];
+qq1996 [shape=circle];
+qq1998LB [shape=circle];
+qq1996 -> qq1998LB [label="j<n | -"];
+qq1991LE [shape=circle];
+qq1996 -> qq1991LE [label="!(j<n) | -"];
+qq1997 [shape=circle];
+qq1999 [shape=circle];
+qq1997 -> qq1999 [label="- | i=i+2"];
+qq1998LB [shape=circle];
+qq1999 [shape=circle];
+qq1998LB -> qq1999 [label="- | i=isw+1"];
+qq1999 [shape=circle];
+qq1005 [shape=circle];
+qq1999 -> qq1005 [label="i<n | -"];
+qq1994LE [shape=circle];
+qq1999 -> qq1994LE [label="!(i<n) | -"];
+
+}
