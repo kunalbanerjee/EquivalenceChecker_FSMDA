@@ -28,7 +28,18 @@ This folder contains the following files:
 
 * ConstructFSMDA.pdf: This file describes how FSMDAs can be derived from behavioural descriptions and their textual representation.
 
-* README.md:       This file.  
+* README.md:       This file.
+
+If you use this tool, then please cite the following work: <br />
+@inproceedings{BanerjeeMS15, <br />
+  author    = {Kunal Banerjee and Chittaranjan Mandal and Dipankar Sarkar}, <br />
+  title     = {A Translation Validation Framework for Symbolic Value Propagation based Equivalence Checking of FSMDAs}, <br />
+  booktitle = {15th {IEEE} International Working Conference on Source Code Analysis and Manipulation, {SCAM} 2015, Bremen, Germany, September 27-28, 2015}, <br />
+  pages     = {247--252}, <br />
+  year      = {2015}, <br />
+  url       = {http://dx.doi.org/10.1109/SCAM.2015.7335421}, <br />
+  doi       = {10.1109/SCAM.2015.7335421}, <br />
+}
 
 
 For more information regarding any of the above mentioned objects, please contact:
