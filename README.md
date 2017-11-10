@@ -37,7 +37,7 @@ If you use this tool, then please cite the following work: <br />
   booktitle = {15th {IEEE} International Working Conference on Source Code Analysis and Manipulation, {SCAM} 2015, Bremen, Germany, September 27-28, 2015}, <br />
   pages     = {247--252}, <br />
   year      = {2015}, <br />
-  url       = {http://dx.doi.org/10.1109/SCAM.2015.7335421}, <br />
+  url       = {<http://dx.doi.org/10.1109/SCAM.2015.7335421>}, <br />
   doi       = {10.1109/SCAM.2015.7335421}, <br />
 }
 
